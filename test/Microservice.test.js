@@ -72,6 +72,29 @@ describe('Microservice', function() {
 
   })
 
+  it('one single microservice - extra data', function(done) {
+    var microservice = new Microservice()
+
+    var microserviceCalled = false
+    var uniqueResult;
+    microservice.add({foo: 'bar'}, function(args, callback) {
+      assert.ok(args)
+      assert.equal(args.foo, 'bar')
+      assert.equal(args.bar, 'foo')
+      microserviceCalled = true
+      uniqueResult = uuid.v4();
+      callback(undefined, uniqueResult)
+    })
+
+    microservice.call({foo: 'bar', bar: 'foo'}, function(err, result) {
+      assert.ok(!err, err)
+      assert.ok(microserviceCalled)
+      assert.equal(result, uniqueResult)
+      done()
+    })
+
+  })
+
   it('three level single microservice', function(done) {
     var microservice = new Microservice()
 
