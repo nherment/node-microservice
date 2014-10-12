@@ -7,7 +7,7 @@ function Microservice() {
   var stacks = patrun()
 
   this.add = function(pattern, action) {
-    var existing = stacks.find(pattern);
+    var existing = stacks.find(pattern)
     if(existing) {
       if(_.isEqual(pattern, existing.pattern)) {
         existing.actions.push(action)
@@ -33,24 +33,24 @@ function Microservice() {
 
 
 function generateCallStack(stacks, args, callback) {
-  var actions = listActions(stacks, args);
+  var actions = listActions(stacks, args)
 
-  var executor = {};
-  var executorsChain = executor;
+  var executor = {}
+  var executorsChain = executor
   for(var i = 0 ; i < actions.length ; i++) {
     executor.downstream = {}
     executor.func = actions[i]
     executor = executor.downstream
   }
 
-  executor = executorsChain;
+  executor = executorsChain
 
   function executeNextChainItem(args, callback) {
     var prior = function(args, localcb) {
       if(typeof localcb !== 'function') {
         throw new Error('callback should be a function')
       }
-      executor = executor.downstream;
+      executor = executor.downstream
       executeNextChainItem(args, localcb)
     }
     if(executor.func) {
@@ -72,17 +72,17 @@ function generateCallStack(stacks, args, callback) {
 
 function listActions(stacks, args) {
 
-  var callStack = [];
+  var callStack = []
   var argsSpecificStack = stacks.find(args)
   for(var i = 0 ; i < argsSpecificStack.actions.length ; i++) {
-    var action = argsSpecificStack.actions[i];
+    var action = argsSpecificStack.actions[i]
     if(_.isFunction(action)) {
       callStack.push(action)
     } else {
-      callStack = callStack.concat(listActions(action, args));
+      callStack = callStack.concat(listActions(action, args))
     }
   }
-  return callStack;
+  return callStack
 }
 
 module.exports = Microservice

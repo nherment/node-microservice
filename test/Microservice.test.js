@@ -10,12 +10,12 @@ describe('Microservice', function() {
     var microservice = new Microservice()
 
     var microserviceCalled = false
-    var uniqueResult;
+    var uniqueResult
     microservice.add({foo: 'bar'}, function(args, callback) {
       assert.ok(args)
       assert.equal(args.foo, 'bar')
       microserviceCalled = true
-      uniqueResult = uuid.v4();
+      uniqueResult = uuid.v4()
       callback(undefined, uniqueResult)
     })
 
@@ -32,12 +32,12 @@ describe('Microservice', function() {
     var microservice = new Microservice()
 
     var microserviceCalled = false
-    var uniqueResult;
+    var uniqueResult
     microservice.add({foo: 'bar'}, function(args, callback) {
       assert.ok(args)
       assert.equal(args.foo, 'bar')
       microserviceCalled = true
-      uniqueResult = uuid.v4();
+      uniqueResult = uuid.v4()
       callback(new Error(uniqueResult), undefined)
     })
 
@@ -54,12 +54,12 @@ describe('Microservice', function() {
     var microservice = new Microservice()
 
     var microserviceCalled = false
-    var uniqueResult;
+    var uniqueResult
     microservice.add({foo: 'bar'}, function(args, callback) {
       assert.ok(args)
       assert.equal(args.foo, 'bar')
       microserviceCalled = true
-      uniqueResult = uuid.v4();
+      uniqueResult = uuid.v4()
       throw new Error(uniqueResult)
     })
 
@@ -76,13 +76,13 @@ describe('Microservice', function() {
     var microservice = new Microservice()
 
     var microserviceCalled = false
-    var uniqueResult;
+    var uniqueResult
     microservice.add({foo: 'bar'}, function(args, callback) {
       assert.ok(args)
       assert.equal(args.foo, 'bar')
       assert.equal(args.bar, 'foo')
       microserviceCalled = true
-      uniqueResult = uuid.v4();
+      uniqueResult = uuid.v4()
       callback(undefined, uniqueResult)
     })
 
@@ -113,7 +113,7 @@ describe('Microservice', function() {
     microservice.add({foo: 'bar'}, function(args, callback) {
       assert.ok(args)
       assert.equal(args.foo, 'bar')
-      result['2'] = 'ms2';
+      result['2'] = 'ms2'
       nestedMicroservice1Called = true
       this.prior(args, callback)
     })
@@ -121,7 +121,7 @@ describe('Microservice', function() {
       assert.ok(args)
       assert.equal(args.foo, 'bar')
       nestedMicroservice2Called = true
-      result['3'] = 'ms3';
+      result['3'] = 'ms3'
       callback(undefined, result)
     })
 
