@@ -1,0 +1,30 @@
+{
+  "name": "microservice",
+  "version": "0.1.0",
+  "description": "minimalist microservices framework",
+  "main": "Microservice.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nherment/node-microservice.git"
+  },
+  "keywords": [
+    "microservices"
+  ],
+  "author": "Nicolas Herment",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nherment/node-microservice/issues"
+  },
+  "homepage": "https://github.com/nherment/node-microservice",
+  "dependencies": {
+    "lodash": "2.4.1",
+    "patrun": "0.2.0"
+  },
+  "devDependencies": {
+    "mocha": "1.21.4",
+    "uuid": "2.0.1"
+  }
+}
